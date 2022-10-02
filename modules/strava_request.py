@@ -1,7 +1,5 @@
 """do stuff"""
 
-import json
-
 import requests
 import urllib3
 
@@ -10,7 +8,7 @@ from modules import constants as con
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
-def request_data() -> json:
+def strava_activities() -> list:
     """get the stuff"""
 
     res = requests.post(con.AUTH_URL, data=con.REQUEST_DATA, verify=False)
