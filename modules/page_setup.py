@@ -24,7 +24,7 @@ def page_setup(page: str) -> None:
     with st.session_state["title_container"]:
 
         # Logo und Titel
-        col1, col2, col3 = st.columns([100, 60, 30])
+        col1, col2, col3 = st.columns([33, 33, 33])
         with col1:
             st.title(cl.Page(page).title)
 

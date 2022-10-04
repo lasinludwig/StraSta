@@ -6,9 +6,15 @@ import os
 import time
 from typing import Any
 
+import requests
 import streamlit as st
+import urllib3
 from github import Github
 from pytz import timezone
+
+from modules import constants as con
+
+urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 
 
 # timer decorator
@@ -82,3 +88,14 @@ def nachkomma(value: float) -> str:
         return str(f"{value:,.1f}").replace(".", ",")
 
     return str(f"{value:,.2f}").replace(".", ",")
+
+
+def strava_activities() -> list:
+    """get the stuff"""
+
+    res = requests.post(con.AUTH_URL, data=con.REQUEST_DATA, verify=False)
+    access_token = res.json()["access_token"]
+    header = {"Authorization": f"Bearer {access_token}"}
+    param = {"per_page": 200, "page": 1}
+
+    return requests.get(con.ACTIVITIES_URL, headers=header, params=param).json()

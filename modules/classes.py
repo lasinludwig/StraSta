@@ -75,13 +75,13 @@ class Page:
     def __post_init__(self) -> None:
         """fill fields after initiation"""
 
-        self.dic: dict = {
+        dic: dict = {
             "login": {
                 "page_tit": "Strava Statistics",
                 "title_animation": "running",
             },
-            "graph": {
-                "page_tit": "Grafische Datenauswertung",
+            "activities": {
+                "page_tit": "Recorded Activities",
                 "title_animation": "running",
             },
             "meteo": {
@@ -90,5 +90,6 @@ class Page:
             },
         }
 
-        self.title = self.dic.get(self.page_id).get("page_tit")
-        self.title_animation = self.dic.get(self.page_id).get("title_animation")
+        if dic.get(self.page_id):
+            self.title = dic.get(self.page_id).get("page_tit")
+            self.title_animation = dic.get(self.page_id).get("title_animation")
