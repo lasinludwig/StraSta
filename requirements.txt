@@ -1,7 +1,7 @@
 deta==1.1.0
 geopy==2.2.0
 meteostat==1.6.5
-numpy==1.23.3
+numpy==1.23.4
 pandas==1.5.0
 plotly==5.10.0
 pygithub==1.55
