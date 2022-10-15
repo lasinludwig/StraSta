@@ -43,13 +43,13 @@ class LottieAnimation:
         }
 
         if dic.get(self.key):
-            self.file = dic.get(self.key).get("path") or f"{folder}{self.key}.json"
-            self.speed = dic.get(self.key).get("speed") or 1
+            self.file = dic[self.key].get("path") or f"{folder}{self.key}.json"
+            self.speed = dic[self.key].get("speed") or 1
         else:
             self.file = f"{folder}{self.key}.json"
             self.speed = 1
 
-    def load_lottie_file(self) -> json:
+    def load_lottie_file(self) -> Any:
         """Load a Lottie animation by providing a json file"""
         with open(self.file) as file:
             return json.load(file)
@@ -69,8 +69,8 @@ class Page:
     """Streamlit pages"""
 
     page_id: str
-    title: str = field(default=None)
-    title_animation: str = field(default=None)
+    title: str = field(init=False)
+    title_animation: str = field(init=False)
 
     def __post_init__(self) -> None:
         """fill fields after initiation"""
@@ -91,5 +91,5 @@ class Page:
         }
 
         if dic.get(self.page_id):
-            self.title = dic.get(self.page_id).get("page_tit")
-            self.title_animation = dic.get(self.page_id).get("title_animation")
+            self.title = dic[self.page_id]["page_tit"]
+            self.title_animation = dic[self.page_id]["title_animation"]
